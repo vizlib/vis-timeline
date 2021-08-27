@@ -1,0 +1,16 @@
+name: Deploy to NPM on release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish_npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build & publish
+        run: |
+          echo ${GITHUB_REF}
