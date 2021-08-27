@@ -18,6 +18,12 @@ jobs:
           find: "\"vis-timeline\""
           replace: "\"@vizlib/vis-timeline\""
           include: "package.json"
+      - name: Find and Replace contributors script
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "\"contributors:update\": \"git-authors-cli\""
+          replace: "\"contributors:update\": \"echo \"Vizlib\"\""
+          include: "package.json"
       - name: Replace NPM version
         run: |
           npm --no-git-tag-version version ${{ env.GITHUB_REF_SLUG }}
