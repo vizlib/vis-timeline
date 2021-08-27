@@ -16,13 +16,9 @@ jobs:
           find: "\"vis-timeline\""
           replace: "\"@vizlib/vis-timeline\""
           include: "package.json"
-      - name: Find and Replace NPM version
-        uses: jacobtomlinson/gha-find-replace@master
-        with:
-          find: "0.0.0-no-version"
-          replace: ${{ GITHUB_REF##*/ }}
-          include: "package.json"
-
+      - name: Replace NPM version
+        run: |
+          npm --no-git-tag-version version ${GITHUB_REF##*/}
       - name: Build & publish
         run: |
           cat package.json
