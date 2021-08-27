@@ -24,6 +24,10 @@ jobs:
           find: "\"contributors:update\": \"git-authors-cli\""
           replace: "\"contributors:update\": \"echo Vizlib\""
           include: "package.json"
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
       - name: Replace NPM version
         run: |
           npm --no-git-tag-version version ${{ env.GITHUB_REF_SLUG }}
