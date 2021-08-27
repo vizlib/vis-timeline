@@ -10,7 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Find and Replace NPM name
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "\"vis-timeline\""
+          replace: "\"@vizlib/vis-timeline\""
+          include: "package.json"
+      - name: Find and Replace NPM version
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "0.0.0-no-version"
+          replace: "${GITHUB_REF##*/}"
+          include: "package.json"
 
       - name: Build & publish
         run: |
-          echo ${GITHUB_REF##*/}
+          cat package.json
