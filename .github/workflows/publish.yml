@@ -21,6 +21,11 @@ jobs:
       - name: Replace NPM version
         run: |
           npm --no-git-tag-version version ${{ env.GITHUB_REF_SLUG }}
+      - name: Install dependencies
+        run: |
+          npm ci
       - name: Build & publish
         run: |
-          cat package.json
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
