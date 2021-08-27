@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
       - name: Find and Replace NPM name
         uses: jacobtomlinson/gha-find-replace@master
         with:
@@ -18,7 +20,7 @@ jobs:
           include: "package.json"
       - name: Replace NPM version
         run: |
-          npm --no-git-tag-version version ${GITHUB_REF##*/}
+          npm --no-git-tag-version version ${{ env.GITHUB_REF_SLUG }}
       - name: Build & publish
         run: |
           cat package.json
