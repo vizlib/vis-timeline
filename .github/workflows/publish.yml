@@ -22,7 +22,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@master
         with:
           find: "\"contributors:update\": \"git-authors-cli\""
-          replace: "\"contributors:update\": \"echo \"Vizlib\"\""
+          replace: "\"contributors:update\": \"echo Vizlib\""
           include: "package.json"
       - name: Replace NPM version
         run: |
