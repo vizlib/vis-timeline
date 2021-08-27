@@ -20,7 +20,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@master
         with:
           find: "0.0.0-no-version"
-          replace: ${GITHUB_REF##*/}
+          replace: ${{ GITHUB_REF##*/ }}
           include: "package.json"
 
       - name: Build & publish
